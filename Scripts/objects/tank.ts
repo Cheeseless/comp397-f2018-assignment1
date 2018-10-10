@@ -1,12 +1,18 @@
 module objects {
-    export class Rectangle extends GameObject {
+    export class Tank extends GameObject {
 
         speed: number = 4;
         rotationSpeed: number  = 2;
+        playerIndex: number;
 
 
-        constructor() {
+        constructor(playerNumner:number, x:number, y:number, scale:number) {
             super("tank");
+            this.x = x;
+            this.y = y;
+            this.scaleX = scale;
+            this.scaleY = scale;
+            this.playerIndex = playerNumner - 1;
             this.Start();
         }
         public Reset(): void {
@@ -15,25 +21,21 @@ module objects {
         public Start(): void {
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
-            this.x = 150;
-            this.y = 150;
-            this.scaleX = 3;
-            this.scaleY = 3;
         }
         public Update(): void {
             
-            if (managers.Input.isKeydown("ArrowUp")) {
+            if (managers.Input.isKeydown(config.INPUT_KEY[this.playerIndex][config.ActionEnum.Forward])) {
                 this.x += this.speed * Math.sin(this.rotation * Math.PI / 180);
                 this.y -= this.speed * Math.cos(this.rotation * Math.PI / 180);
             }
-            if (managers.Input.isKeydown("ArrowDown")) {
+            if (managers.Input.isKeydown(config.INPUT_KEY[this.playerIndex][config.ActionEnum.Backward])) {
                 this.x -= this.speed * Math.sin(this.rotation * Math.PI / 180);
                 this.y += this.speed * Math.cos(this.rotation * Math.PI / 180);
             }
-            if (managers.Input.isKeydown("ArrowRight")) {
+            if (managers.Input.isKeydown(config.INPUT_KEY[this.playerIndex][config.ActionEnum.TurnRight])) {
                 this.rotation += this.rotationSpeed;
             }
-            if (managers.Input.isKeydown("ArrowLeft")) {
+            if (managers.Input.isKeydown(config.INPUT_KEY[this.playerIndex][config.ActionEnum.TurnLeft])) {
                 this.rotation -= this.rotationSpeed;
             }
 

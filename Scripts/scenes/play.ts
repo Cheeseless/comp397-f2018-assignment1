@@ -1,43 +1,47 @@
 module scenes {
-    export class Play extends objects.Scene {
-        // private instance variable
-        private _player: objects.Player;
-        private _ocean: objects.Ocean;
-        private _island: objects.Island;
-        private _clouds: objects.Cloud[];
-        private _numClouds: number;
+    export class Play extends objects.Scene{
+
+        private _map:objects.Map;
+        private _level:number;
+
         constructor() {
             super();
+            this._level = 1;
             this.Start();
         }
-        public Start(): void {
+
+        private _levelup():void {
+            this._level++;
+            this.Reset()
+        }
+
+        public Start():void {
+            this.Reset();
             this.Main();
-        }
-        public Update(): void {
-            this._ocean.Update();
-            this._player.Update();
-            this._island.Update();
-            for (const cloud of this._clouds) {
-                cloud.Update();
-            }
-        }
-        public Destroy(): void {
+        };
+
+        public Update():void {
+            this._map.tank1.Update();
+            this._map.tank2.Update();
+        };
+
+        public Destroy():void {
             this.removeAllChildren();
-        }
-        public Reset(): void {
-        }
-        public Main(): void {
-            this._ocean = new objects.Ocean();
-            this.addChild(this._ocean);
-            this._island = new objects.Island();
-            this.addChild(this._island);
-            // adds cloud to the scene
-            for (let count = 0; count < this._numClouds; count++) {
-                this.addChild(this._clouds[count]);
-            }
-            // adds player to the scene
-            this._player = new objects.Player();
-            this.addChild(this._player);
-        }
+        };
+
+        public Reset():void {
+            this.removeAllChildren();
+            this._map = new objects.Map(this._level, this);
+        };
+
+        public Main():void {
+            this.on("click", ()=>{
+                if(this._level == 3) {
+                    managers.Game.currentState = config.Scene.START; 
+                } else {
+                    this._levelup();
+                }
+            });
+        };
     }
 }

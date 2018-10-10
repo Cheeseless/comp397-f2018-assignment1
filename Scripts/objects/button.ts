@@ -1,19 +1,19 @@
 module objects {
     export class Button extends createjs.Bitmap {
         // private instance variables
-        private _width:number;
+        private _with:number;
         private _height:number;
         private _halfWidth:number;
         private _halfHeight:number;
 
         // public properties
         get Width():number {
-            return this._width;
+            return this._with;
         }
 
         set Width(newValue:number) {
-            this._width = newValue;
-            this.HalfWidth = this._width * 0.5;
+            this._with = newValue;
+            this.HalfWidth = this._with *.5;
         }
 
         get Height():number {
@@ -22,15 +22,7 @@ module objects {
 
         set Height(newValue:number) {
             this._height = newValue;
-            this.HalfHeight = this._height * 0.5;
-        }
-
-        get HalfHeight():number {
-            return this._halfHeight;
-        }
-
-        set HalfHeight(newValue:number) {
-            this._halfHeight = newValue;
+            this.HalfHeight = this._height *.5;
         }
 
         get HalfWidth():number {
@@ -41,22 +33,22 @@ module objects {
             this._halfWidth = newValue;
         }
 
-        // constructor
+        get HalfHeight():number {
+            return this._halfHeight;
+        }
 
-        /**
-         * Creates an instance of Button.
-         * @param {string} imageString
-         * @param {number} [x=0]
-         * @param {number} [y=0]
-         * @param {boolean} [isCentered=false]
-         */
-        constructor(imageString:string, x:number = 0, y:number = 0, isCentered:boolean = false) {
-            super(managers.Game.assetManager.getResult(imageString));
+        set HalfHeight(newValue:number) {
+            this._halfHeight = newValue;
+        }
+
+        // constructor
+        constructor(imageString:string, x:number = 0, y:number = 0, isCenter:boolean = false){
+            super(managers.Game.assetMnager.getResult(imageString));
 
             this.Width = this.getBounds().width;
             this.Height = this.getBounds().height;
 
-            if(isCentered) {
+            if(isCenter) {
                 this.regX = this.HalfWidth;
                 this.regY = this.HalfHeight;
             }
@@ -64,20 +56,17 @@ module objects {
             this.x = x;
             this.y = y;
 
-            // event listeners
             this.on("mouseover", this._over);
             this.on("mouseout", this._out);
         }
-        
-        // private methods
 
-        // event handlers
+        // private methods
         private _over(event:createjs.MouseEvent):void {
-            this.alpha = 0.7; // 70% opacity
+            this.alpha = 0.7;
         }
 
         private _out(event:createjs.MouseEvent):void {
-            this.alpha = 1.0 // 100% opacity
+            this.alpha = 1.0;
         }
 
         // public methods

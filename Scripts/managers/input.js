@@ -1,34 +1,31 @@
 var managers;
 (function (managers) {
-    var Input = /** @class */ (function () {
-        function Input() {
-        }
-        Input.isKeydown = function (key) {
+    class Input {
+        static isKeydown(key) {
             //if (Input.keys[key] === undefined) {
             //     return false;
             // }else {
             return Input.keys[key];
             //}
-        };
-        Input.ShowInput = function (e, not) {
+        }
+        static ShowInput(e, not) {
             if (not) {
                 console.log(e.key + " Not");
             }
             else {
                 console.log(e.key);
             }
-        };
-        Input.HandleInput = function (e) {
+        }
+        static HandleInput(e) {
             this.ShowInput(e);
             Input.keys[e.code] = true;
-        };
-        Input.HandleUpInput = function (e) {
+        }
+        static HandleUpInput(e) {
             this.ShowInput(e, true);
             Input.keys[e.code] = false;
-        };
-        Input.keys = {};
-        return Input;
-    }());
+        }
+    }
+    Input.keys = {};
     managers.Input = Input;
 })(managers || (managers = {}));
 //# sourceMappingURL=input.js.map

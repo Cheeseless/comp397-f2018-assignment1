@@ -1,10 +1,10 @@
 module objects {
     export abstract class Scene extends createjs.Container {
-        // private instance variables
+        // private 
 
-        // public properties
+        // public
 
-        // constructor
+        // contructor
         constructor() {
             super();
         }

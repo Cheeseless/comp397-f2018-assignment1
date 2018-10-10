@@ -1,50 +1,53 @@
-//IIFE - Immediately Invoked Function Expression
+// IIFE - Immediately Invoked Function Expression
 (function () {
     // game variables
-    var canvas;
-    var stage;
-    var assetManager;
-    var currentScene;
-    var currentState;
-    var assetManifest = [
-        { id: "startButton", src: "/Assets/images/startButton.png" },
-        { id: "restartButton", src: "/Assets/images/restartButton.png" },
-        { id: "plane", src: "/Assets/images/plane.png" },
-        { id: "cloud", src: "/Assets/images/cloud.png" },
-        { id: "tank", src: "/Assets/images/tank.png" },
-        { id: "island", src: "/Assets/images/island.png" },
-        { id: "ocean", src: "/Assets/images/ocean.gif" },
-        { id: "engineSound", src: "/Assets/audio/engine.ogg" },
-        { id: "thunderSound", src: "/Assets/audio/thunder.ogg" },
-        { id: "yaySound", src: "/Assets/audio/yay.ogg" }
+    let canvas;
+    let stage;
+    let assetManager;
+    let currentScene;
+    let currentState;
+    let assetManifest = [
+        { id: "startButton", src: "./Assets/Images/startButton.png" },
+        { id: "engineSound", src: "./Assets/audio/engine.ogg" },
+        { id: "thunderSound", src: "./Assets/audio/thunder.ogg" },
+        { id: "yaySound", src: "./Assets/audio/yay.ogg" },
+        { id: "background1", src: "./Assets/Images/background1.jpg" },
+        { id: "background2", src: "./Assets/Images/background2.jpg" },
+        { id: "background3", src: "./Assets/Images/background3.jpg" },
+        { id: "tank", src: "./Assets/Images/tank.png" },
+        { id: "block_in", src: "./Assets/Images/block_in.png" },
+        { id: "block_b1", src: "./Assets/Images/block_b1.png" },
+        { id: "block_b2", src: "./Assets/Images/block_b2.png" },
+        { id: "block_d1", src: "./Assets/Images/block_d1.png" },
+        { id: "block_d2", src: "./Assets/Images/block_d2.png" },
+        { id: "block_d2_2", src: "./Assets/Images/block_d2_2.png" },
     ];
     function Init() {
         assetManager = new createjs.LoadQueue();
-        managers.Game.assetManager = assetManager; // creates a reference to the global assetManager
-        assetManager.installPlugin(createjs.Sound); // enable sound preloading
-        assetManager.loadManifest(assetManifest); // preloads all assets listed in the manifest
-        assetManager.on("complete", Start); // call Start when assets are finished loading
+        managers.Game.assetMnager = assetManager;
+        assetManager.installPlugin(createjs.Sound);
+        assetManager.loadManifest(assetManifest);
+        assetManager.on("complete", Start);
     }
     function Start() {
-        console.log("%c Game Started...", "color: blue; font-size: 20px;");
+        console.log(`%c Game Started`, "color:blue; font-size: 20px;");
         canvas = document.getElementsByTagName("canvas")[0];
         stage = new createjs.Stage(canvas);
-        managers.Game.stage = stage; // passing a reference to the stage globally
+        managers.Game.stage = stage;
         stage.enableMouseOver(20);
         createjs.Ticker.framerate = 60; // game will run at 60fps
         createjs.Ticker.on("tick", Update);
-        currentState = config.Scene.TANK_TEST;
+        currentState = config.Scene.START;
         managers.Game.currentState = currentState;
-        //FOR PROTOTYPE
-        console.log("load start");
-        document.addEventListener("keydown", function (event) {
+        document.addEventListener("keydown", (event) => {
             managers.Input.HandleInput(event);
         });
-        document.addEventListener("keyup", function (event) {
+        document.addEventListener("keyup", (event) => {
             managers.Input.HandleUpInput(event);
         });
         Main();
     }
+    // this is the game loop
     function Update() {
         currentScene.Update();
         if (currentState != managers.Game.currentState) {
@@ -54,7 +57,6 @@
         stage.update();
     }
     function Main() {
-        // clean up current scene
         if (currentScene) {
             currentScene.Destroy();
             stage.removeAllChildren();
@@ -65,12 +67,6 @@
                 break;
             case config.Scene.PLAY:
                 currentScene = new scenes.Play();
-                break;
-            case config.Scene.TANK_TEST:
-                currentScene = new scenes.TankTest();
-                break;
-            case config.Scene.OVER:
-                currentScene = new scenes.Over();
                 break;
         }
         stage.addChild(currentScene);
