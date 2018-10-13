@@ -7,29 +7,30 @@
     let currentScene;
     let currentState;
     let assetManifest = [
-        { id: "startButton", src: "./Assets/Images/startButton.png" },
-        { id: "engineSound", src: "./Assets/audio/engine.ogg" },
-        { id: "thunderSound", src: "./Assets/audio/thunder.ogg" },
-        { id: "yaySound", src: "./Assets/audio/yay.ogg" },
-        { id: "background1", src: "./Assets/Images/background1.jpg" },
-        { id: "background2", src: "./Assets/Images/background2.jpg" },
-        { id: "background3", src: "./Assets/Images/background3.jpg" },
-        { id: "blank", src: "/Assets/images/blank.png" },
-        { id: "chicken", src: "/Assets/images/chicken.png" },
-        { id: "megaman", src: "/Assets/images/megaman.png" },
-        { id: "pikachu", src: "/Assets/images/pikachu.png" },
-        { id: "seven", src: "/Assets/images/seven.png" },
-        { id: "slime", src: "/Assets/images/slime.png" },
-        { id: "shroom", src: "/Assets/images/shroom.png" },
-        { id: "triforce", src: "/Assets/images/triforce.png" },
-        { id: "slotMachine", src: "/Assets/images/slotmachine-layout.png" },
-        { id: "spin", src: "/Assets/images/spin-button.png" },
-        { id: "reset", src: "/Assets/images/reset-button.png" },
-        { id: "quit", src: "/Assets/images/quit-button.png" },
-        { id: "zerobet", src: "/Assets/images/zerobet.png" },
-        { id: "onebet", src: "/Assets/images/onebet.png" },
-        { id: "fivebet", src: "/Assets/images/fivebet.png" },
-        { id: "tenbet", src: "/Assets/images/tenbet.png" },
+        { id: "startButton", src: "../Assets/Images/startButton.png" },
+        { id: "restartButton", src: "../Assets/Images/restartButton.png" },
+        { id: "engineSound", src: "../Assets/audio/engine.ogg" },
+        { id: "thunderSound", src: "../Assets/audio/thunder.ogg" },
+        { id: "yaySound", src: "../Assets/audio/yay.ogg" },
+        { id: "background1", src: "../Assets/Images/background1.jpg" },
+        { id: "background2", src: "../Assets/Images/background2.jpg" },
+        { id: "background3", src: "../Assets/Images/background3.jpg" },
+        { id: "blank", src: "./Assets/images/blank.png" },
+        { id: "chicken", src: "./Assets/images/chicken.png" },
+        { id: "megaman", src: "./Assets/images/megaman.png" },
+        { id: "pikachu", src: "./Assets/images/pikachu.png" },
+        { id: "seven", src: "./Assets/images/seven.png" },
+        { id: "slime", src: "./Assets/images/slime.png" },
+        { id: "shroom", src: "./Assets/images/shroom.png" },
+        { id: "triforce", src: "./Assets/images/triforce.png" },
+        { id: "slotMachine", src: "./Assets/images/slotmachine-layout.png" },
+        { id: "spin", src: "./Assets/images/spin-button.png" },
+        { id: "reset", src: "./Assets/images/reset-button.png" },
+        { id: "quit", src: "./Assets/images/quit-button.png" },
+        { id: "zerobet", src: "./Assets/images/zerobet.png" },
+        { id: "onebet", src: "./Assets/images/onebet.png" },
+        { id: "fivebet", src: "./Assets/images/fivebet.png" },
+        { id: "tenbet", src: "./Assets/images/tenbet.png" },
     ];
     function Init() {
         assetManager = new createjs.LoadQueue();
@@ -76,6 +77,9 @@
                 break;
             case config.Scene.PLAY:
                 currentScene = new scenes.Play();
+                break;
+            case config.Scene.OVER:
+                currentScene = new scenes.Over();
                 break;
         }
         stage.addChild(currentScene);

@@ -1,11 +1,11 @@
 /*
 *   Pedro Bento 300843658
 *   Assignment 1   Slot Machine
+*   This application is a slot machine game with simple betting and a jackpot
 *
 *
-*
-*
-*
+*   Revision History: https://github.com/Cheeseless/comp397-f2018-assignment1/commits/master
+*   creation: 29 September 2018
 */
 
 module scenes {
@@ -155,6 +155,7 @@ module scenes {
                 this.playerMoney -= this.wager;
                 this.moneyText.text = this.playerMoney.toString();
                 for (let spin = 0; spin < 3; spin++) {
+                    //roll a die between 1 and 65 to determine the outcome for a given slot
                     rollValue[spin] = Math.floor((Math.random() * 65) + 1);
                     switch (rollValue[spin]) {
                         case this.checkRange(rollValue[spin], 1, 27):  // 41.5% probability
@@ -209,7 +210,9 @@ module scenes {
         }
         DetermineWinnings(): void {
             this.lastPayout = 0;
+            //blanks invalidate any payout
             if (this.blanks == 0) {
+                //matches of three and two icons provide payout. Sevens provide payout on single ocurrence
                 if (this.shrooms == 3) {
                     this.lastPayout = this.wager * 10;
                 }
@@ -298,10 +301,11 @@ module scenes {
             this.playerMoney = 1000;
             this.wager = 0;
             this.lastPayout = 0;
-            this.jackpot = 0;
+            this.jackpot = 5000;
             this.UpdateNumbers();
         }
         public Quit(): void {
+            managers.Game.Score = this.playerMoney;
             managers.Game.currentState = config.Scene.OVER;
         }
     }
