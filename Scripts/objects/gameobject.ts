@@ -43,7 +43,7 @@ module objects {
 
         // constructors
         constructor(imageString:string) {
-           super(managers.Game.assetMnager.getResult(imageString));
+           super(managers.Game.assetManager.getResult(imageString));
            this._initialize();
         }
 

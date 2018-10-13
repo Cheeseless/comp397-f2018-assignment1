@@ -11,8 +11,8 @@ var config;
         BlockType[BlockType["T2"] = 6] = "T2";
         BlockType[BlockType["__"] = 7] = "__";
     })(BlockType = config.BlockType || (config.BlockType = {}));
-    config.SCREEN_WITH = 1024; //640;
-    config.SCREEN_HEIGHT = 768; //480;
+    config.SCREEN_WIDTH = 320; //640;
+    config.SCREEN_HEIGHT = 480; //480;
     config.BLOCK_SIZE = 32;
     var _ = config.BlockType;
     config.GRID = [

@@ -17,7 +17,7 @@ module objects {
 
         // private methods
         private _checkBounds():void {
-            if(this.x < -(this.Width - config.SCREEN_WITH) || this.x >= 0) {
+            if(this.x < -(this.Width - config.SCREEN_WIDTH) || this.x >= 0) {
                 this._horizontalSpeed *= -1;
             }
             if(this.y < -(this.Height - config.SCREEN_HEIGHT) || this.y >= 0) {

@@ -3,7 +3,7 @@ var objects;
     class GameObject extends createjs.Bitmap {
         // constructors
         constructor(imageString) {
-            super(managers.Game.assetMnager.getResult(imageString));
+            super(managers.Game.assetManager.getResult(imageString));
             this._initialize();
         }
         // public properties

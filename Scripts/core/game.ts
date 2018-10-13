@@ -1,40 +1,50 @@
 // IIFE - Immediately Invoked Function Expression
-(function(){
+(function () {
     // game variables
-    let canvas:HTMLCanvasElement;
-    let stage:createjs.Stage;
-    let assetManager:createjs.LoadQueue;
+    let canvas: HTMLCanvasElement;
+    let stage: createjs.Stage;
+    let assetManager: createjs.LoadQueue;
 
-    let currentScene:objects.Scene;
-    let currentState:config.Scene;
+    let currentScene: objects.Scene;
+    let currentState: config.Scene;
 
     let assetManifest = [
-        {id:"startButton", src:"./Assets/Images/startButton.png"},
-        {id:"engineSound", src:"./Assets/audio/engine.ogg"},
-        {id:"thunderSound", src:"./Assets/audio/thunder.ogg"},
-        {id:"yaySound", src:"./Assets/audio/yay.ogg"},
-        {id:"background1", src:"./Assets/Images/background1.jpg"},
-        {id:"background2", src:"./Assets/Images/background2.jpg"},
-        {id:"background3", src:"./Assets/Images/background3.jpg"},
-        {id:"tank", src:"./Assets/Images/tank.png"},
-        {id:"block_in", src:"./Assets/Images/block_in.png"},
-        {id:"block_b1", src:"./Assets/Images/block_b1.png"},
-        {id:"block_b2", src:"./Assets/Images/block_b2.png"},
-        {id:"block_d1", src:"./Assets/Images/block_d1.png"},
-        {id:"block_d2", src:"./Assets/Images/block_d2.png"},
-        {id:"block_d2_2", src:"./Assets/Images/block_d2_2.png"},
+        { id: "startButton", src: "./Assets/Images/startButton.png" },
+        { id: "engineSound", src: "./Assets/audio/engine.ogg" },
+        { id: "thunderSound", src: "./Assets/audio/thunder.ogg" },
+        { id: "yaySound", src: "./Assets/audio/yay.ogg" },
+        { id: "background1", src: "./Assets/Images/background1.jpg" },
+        { id: "background2", src: "./Assets/Images/background2.jpg" },
+        { id: "background3", src: "./Assets/Images/background3.jpg" },
+        { id: "blank", src: "/Assets/images/blank.png" },
+        { id: "chicken", src: "/Assets/images/chicken.png" },
+        { id: "megaman", src: "/Assets/images/megaman.png" },
+        { id: "pikachu", src: "/Assets/images/pikachu.png" },
+        { id: "seven", src: "/Assets/images/seven.png" },
+        { id: "slime", src: "/Assets/images/slime.png" },
+        { id: "shroom", src: "/Assets/images/shroom.png" },
+        { id: "triforce", src: "/Assets/images/triforce.png" },
+        { id: "slotMachine", src: "/Assets/images/slotmachine-layout.png" },
+        { id: "spin", src: "/Assets/images/spin-button.png" },
+        { id: "reset", src: "/Assets/images/reset-button.png" },
+        { id: "quit", src: "/Assets/images/quit-button.png" },
+        { id: "zerobet", src: "/Assets/images/zerobet.png" },
+        { id: "onebet", src: "/Assets/images/onebet.png" },
+        { id: "fivebet", src: "/Assets/images/fivebet.png" },
+        { id: "tenbet", src: "/Assets/images/tenbet.png" },
+
     ];
 
-    function Init():void {
+    function Init(): void {
         assetManager = new createjs.LoadQueue();
-        managers.Game.assetMnager = assetManager;
+        managers.Game.assetManager = assetManager;
         assetManager.installPlugin(createjs.Sound);
         assetManager.loadManifest(assetManifest);
         assetManager.on("complete", Start);
 
     }
 
-    function Start():void {
+    function Start(): void {
         console.log(`%c Game Started`, "color:blue; font-size: 20px;");
         canvas = document.getElementsByTagName("canvas")[0];
         stage = new createjs.Stage(canvas);
@@ -52,15 +62,15 @@
         document.addEventListener("keyup", (event) => {
             managers.Input.HandleUpInput(event);
         })
-        
+
         Main();
     }
 
     // this is the game loop
-    function Update():void {
+    function Update(): void {
         currentScene.Update();
 
-        if(currentState != managers.Game.currentState) {
+        if (currentState != managers.Game.currentState) {
             currentState = managers.Game.currentState;
             Main();
         }
@@ -68,20 +78,20 @@
         stage.update();
     }
 
-    function Main():void {
+    function Main(): void {
 
-        if(currentScene) {
+        if (currentScene) {
             currentScene.Destroy();
             stage.removeAllChildren();
         }
 
-        switch(currentState) {
+        switch (currentState) {
             case config.Scene.START:
-            currentScene = new scenes.Start();
-            break;
+                currentScene = new scenes.Start();
+                break;
             case config.Scene.PLAY:
-            currentScene = new scenes.Play();
-            break;
+                currentScene = new scenes.Play();
+                break;
         }
 
         stage.addChild(currentScene);

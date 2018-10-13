@@ -10,8 +10,8 @@ module config {
         __, // empty spot
     }
 
-    export const SCREEN_WITH:number = 1024; //640;
-    export const SCREEN_HEIGHT:number = 768; //480;
+    export const SCREEN_WIDTH:number = 320; //640;
+    export const SCREEN_HEIGHT:number = 480; //480;
     export const BLOCK_SIZE:number = 32;
 
     var _ = config.BlockType;
