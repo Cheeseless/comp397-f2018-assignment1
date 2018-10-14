@@ -4,7 +4,7 @@
   "description": "COMP397-F2018-Lesson1",
   "main": "index.js",
   "repository": "https://github.com/smonroy/COMP397-F2018-Lesson1.git",
-  "author": "Sergio Monroy Escalante <sergio.monroy.escalante@gmail.com>",
+  "author": "Pedro Bento",
   "license": "MIT",
   "dependencies": {
     "easeljs": "^1.0.2",
