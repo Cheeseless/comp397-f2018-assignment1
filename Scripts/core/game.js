@@ -7,14 +7,11 @@
     let currentScene;
     let currentState;
     let assetManifest = [
-        { id: "startButton", src: "../Assets/Images/startButton.png" },
-        { id: "restartButton", src: "../Assets/Images/restartButton.png" },
-        { id: "engineSound", src: "../Assets/audio/engine.ogg" },
-        { id: "thunderSound", src: "../Assets/audio/thunder.ogg" },
-        { id: "yaySound", src: "../Assets/audio/yay.ogg" },
-        { id: "background1", src: "../Assets/Images/background1.jpg" },
-        { id: "background2", src: "../Assets/Images/background2.jpg" },
-        { id: "background3", src: "../Assets/Images/background3.jpg" },
+        { id: "startButton", src: "./Assets/images/startButton.png" },
+        { id: "restartButton", src: "./Assets/images/restartButton.png" },
+        { id: "background1", src: "./Assets/images/background1.jpg" },
+        { id: "background2", src: "./Assets/images/background2.jpg" },
+        { id: "background3", src: "./Assets/images/background3.jpg" },
         { id: "blank", src: "./Assets/images/blank.png" },
         { id: "chicken", src: "./Assets/images/chicken.png" },
         { id: "megaman", src: "./Assets/images/megaman.png" },
